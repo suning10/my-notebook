@@ -1,0 +1,72 @@
+# EC2
+- EC2 Instance Types
+  - General Purpose
+    - web server
+    - Code repository
+    - small to medium
+  - Compute optimized 
+    - batch processing
+    - media transcoding 
+    - machine learning
+  - Memory Optimized
+    - Process large dataset in memory
+    - data analytics
+  - Storage Optimized 
+    - OLTP (high frequency write / read)
+    - Data warehouse
+    - distributed file systems
+  - Accelerated Computing
+    - use hardware accelerators 
+- Security Group + Ports
+  - Firewalls
+    - Inbound 
+      - By IP 
+        - 80
+    - Outbound
+      - Allow all
+    - By Region 
+      - need to create security group for different region 
+  - Good practice to have SSH group
+  - infinitely loop -> Firewall
+  - connection refused -> application error
+  - Port
+    - 22 SSH
+    - 22 SFTP
+    - 443 HTTPS
+    - 80 HTTP
+    - 3389 RDP
+  - Network Security -> Set inbound outbound rule
+- SSH
+  - pem file 
+  - ssh ec2-user@ip -i .pem
+  - chmod if necessary
+- EC2 Role
+  - Why: Need to configure credential 
+  - How: Assign IAM role
+    - eg. IAM Readonly access 
+- different plans 
+  - On Demand: Pay by second, predictable pricing, short workload **Highest Cost**
+  - Reserved (1-3 Years) 
+    - reserved instance 
+    - convertible long workloads with flexible
+  - Spot Instances 
+    - short workloads, can lose instances
+    - bid success 
+      - could stop 
+        - spot request by me 
+        - cancel while open active or disabled 
+          - if not cancel, the spot instance won't stop
+  - Spot fleet 
+    - most cost efficient
+    - define pools( a pool of instances)
+      - to choose from by strategy
+        - lowest price
+        - diversified
+        - priceCapcityOptimized (recommend)
+  - Dedicated Instances
+    - no other user share instances
+  - Dedicated Hosts
+    - physical server
+    - have software license 
+  - Capacity Reservations
+    - book for the period in AZ

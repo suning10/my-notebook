@@ -19,6 +19,7 @@
   - start by building a container and ini in main.py
   - container = build_container(settings)
   - app.state.container = container
+    - state is global level setting 
     
 
 ## scoped dependencies
