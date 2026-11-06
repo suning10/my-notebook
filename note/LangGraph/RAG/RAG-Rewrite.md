@@ -26,6 +26,36 @@
   - Rewrite completely different semantics
     - validator to check similarity
 
+## when to use 
+  - simple rewrite 
+    - determine if it is multi round 
+    - add glossory 
+```python
+Is it a chatbot with conversation history?
+  YES → always rewrite (condense history + query)
+  NO  → skip rewrite entirely
+
+Measure retrieval quality first
+Add complexity only if you have data showing it helps
+```
+
+## a better design with fallback rewrite
+```python
+Query
+  ↓
+[1] Multi-round check → inject history
+  ↓
+[2] Regex glossary expansion
+  ↓
+[3] Embed + Vector Search
+  ↓
+[4] Threshold check
+  PASS → rerank → inject → LLM answer
+  FAIL → LLM rewrite → re-search
+           ↓
+        still FAIL → "no information found"
+```
+
 
 ## Hybrid Search
 
